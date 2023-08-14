@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Numerics;
+using Dapper;
 using LearningDotNetSeven2.Models;
+using Microsoft.Data.SqlClient;
 
 namespace LearningDotNetSeven2
 {
