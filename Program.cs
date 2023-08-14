@@ -1,12 +1,22 @@
 ﻿using System;
+using LearningDotNetSeven2.Models;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace LearningDotNetSeven2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Computer myComputer=new Computer(){
+                Motherboard="Z690",
+                HasWiFi=true,
+                HasLTE=false,
+                RealeaseDate=DateTime.Now,
+                Price=943.87m,
+                VideoCard="RTX 2060"
+            };
+            Console.WriteLine(myComputer.Motherboard);
+            
         }
     }
 }
