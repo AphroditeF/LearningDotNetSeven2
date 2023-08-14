@@ -7,6 +7,15 @@ namespace LearningDotNetSeven2
     {
         static void Main(string[] args)
         {
+            string connectionString= "Server=(local);Database=DotNetCourseDatabase;TrustServerCertificate=true;Trusted_Connection=true;";
+            IDbConnection dbConnection = new SqlConnection(connectionString);
+
+            string sqlCommand="SELECT GETDATE()";
+
+            DateTime rightNow = dbConnection.QuerySingle<DateTime>(sqlCommand);
+
+            Console.WriteLine(rightNow);
+            
             Computer myComputer=new Computer(){
                 Motherboard="Z690",
                 HasWiFi=true,
