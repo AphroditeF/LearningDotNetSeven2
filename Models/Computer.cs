@@ -1,5 +1,3 @@
-
-
 namespace LearningDotNetSeven2.Models
 {
     public class Computer

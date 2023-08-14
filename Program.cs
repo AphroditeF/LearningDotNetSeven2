@@ -1,6 +1,5 @@
 ﻿using System;
 using LearningDotNetSeven2.Models;
-
 namespace LearningDotNetSeven2
 {
     internal class Program
@@ -16,7 +15,6 @@ namespace LearningDotNetSeven2
                 VideoCard="RTX 2060"
             };
             Console.WriteLine(myComputer.Motherboard);
-            
         }
     }
 }
