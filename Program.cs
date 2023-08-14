@@ -1,4 +1,5 @@
 ﻿using System;
+using LearningDotNetSeven2.Models;
 
 namespace LearningDotNetSeven2
 {
@@ -6,7 +7,16 @@ namespace LearningDotNetSeven2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Computer myComputer=new Computer(){
+                Motherboard="Z690",
+                HasWiFi=true,
+                HasLTE=false,
+                RealeaseDate=DateTime.Now,
+                Price=943.87m,
+                VideoCard="RTX 2060"
+            };
+            Console.WriteLine(myComputer.Motherboard);
+            
         }
     }
 }
