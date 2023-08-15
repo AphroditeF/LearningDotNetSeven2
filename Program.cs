@@ -7,6 +7,7 @@ using Dapper;
 using LearningDotNetSeven2.Models;
 using Microsoft.Data.SqlClient;
 using System.Globalization;
+using LearningDotNetSeven2.Data;
 
 namespace LearningDotNetSeven2
 {
@@ -14,12 +15,11 @@ namespace LearningDotNetSeven2
     {
         static void Main(string[] args)
         {
-            string connectionString= "Server=(local);Database=DotNetCourseDatabase;TrustServerCertificate=true;Trusted_Connection=true;";
-            IDbConnection dbConnection = new SqlConnection(connectionString);
+            DataContextDapper dapper=new DataContextDapper();
 
             string sqlCommand="SELECT GETDATE()";
 
-            DateTime rightNow = dbConnection.QuerySingle<DateTime>(sqlCommand);
+            DateTime rightNow = dapper.LoadDataSingle<DateTime>(sqlCommand);
 
             Console.WriteLine(rightNow);
             
@@ -51,7 +51,7 @@ namespace LearningDotNetSeven2
 
             Console.WriteLine(sql);
 
-            int result = dbConnection.Execute(sql);
+            bool result = dapper.ExecuteSql(sql);
             Console.WriteLine("result:");
             Console.WriteLine(result);
 
@@ -66,7 +66,7 @@ namespace LearningDotNetSeven2
                 FROM TutorialAppSchema.Computer";
 
 
-            IEnumerable<Computer>computers = dbConnection.Query<Computer>(sqlSelect);
+            IEnumerable<Computer>computers = dapper.LoadData<Computer>(sqlSelect);
 
             Console.WriteLine("'Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
 
