@@ -12,7 +12,6 @@ namespace LearningDotNetSeven2.Data{
             return dbConnection.Query<T>(sql);
         }
 
-
         public T LoadDataSingle<T>(string sql)
         {
             IDbConnection dbConnection = new SqlConnection(_connectionString);
@@ -29,10 +28,6 @@ namespace LearningDotNetSeven2.Data{
         {
             IDbConnection dbConnection = new SqlConnection(_connectionString);
             return dbConnection.Execute(sql);
-        }
-        
-            
-            
-
+        }       
     }
 }

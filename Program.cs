@@ -16,6 +16,7 @@ namespace LearningDotNetSeven2
         static void Main(string[] args)
         {
             DataContextDapper dapper=new DataContextDapper();
+            DataContextEF entityFramework=new DataContextEF();
 
             string sqlCommand="SELECT GETDATE()";
 
@@ -31,6 +32,9 @@ namespace LearningDotNetSeven2
                 Price=943.87m,
                 VideoCard="RTX 2060"
             };
+
+            entityFramework.Add(myComputer);
+            entityFramework.SaveChanges();
 
             Console.WriteLine(myComputer.Motherboard);
 
@@ -57,7 +61,7 @@ namespace LearningDotNetSeven2
 
             /*myComputer.*/
 
-            string sqlSelect=@"SELECT Motherboard,
+            string sqlSelect=@"SELECT ComputerID, Motherboard,
                 HasWiFi,
                 HasLTE,
                 ReleaseDate,
@@ -65,24 +69,44 @@ namespace LearningDotNetSeven2
                 VideoCard
                 FROM TutorialAppSchema.Computer";
 
-
             IEnumerable<Computer>computers = dapper.LoadData<Computer>(sqlSelect);
 
-            Console.WriteLine("'Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
+            Console.WriteLine("'ComputerID','Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
 
             foreach(Computer singleComputer in computers){
                 Console.WriteLine("'" 
-                + myComputer.Motherboard
-                + "','" + myComputer.HasWiFi
-                + "','" + myComputer.HasLTE
-                + "','" + myComputer.ReleaseDate.ToString("yyyy-MM-dd")
-                + "','" + myComputer.Price.ToString("0.00", CultureInfo.InvariantCulture)
-                + "','" + myComputer.VideoCard
+                + singleComputer.ComputerID
+                + "','" + singleComputer.Motherboard
+                + "','" + singleComputer.HasWiFi
+                + "','" + singleComputer.HasLTE
+                + "','" + singleComputer.ReleaseDate.ToString("yyyy-MM-dd")
+                + "','" + singleComputer.Price.ToString("0.00", CultureInfo.InvariantCulture)
+                + "','" + singleComputer.VideoCard
                 + "'");
                 
             
             }
 
+            IEnumerable<Computer>?computersEF = entityFramework.Computer?.ToList<Computer>();
+
+            Console.WriteLine("'ComputerID','Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
+
+            if(computersEF!=null){
+                foreach(Computer singleComputer in computersEF){
+                    Console.WriteLine("'" 
+                    + singleComputer.ComputerID
+                    + "','" + singleComputer.Motherboard
+                    + "','" + singleComputer.HasWiFi
+                    + "','" + singleComputer.HasLTE
+                    + "','" + singleComputer.ReleaseDate.ToString("yyyy-MM-dd")
+                    + "','" + singleComputer.Price.ToString("0.00", CultureInfo.InvariantCulture)
+                    + "','" + singleComputer.VideoCard
+                    + "'");
+                
+            
+                }
+
+            }       
             /*List<Computer>computers = dbConnection.Query<Computer>(sqlSelect).ToList();*/
         }
     }
