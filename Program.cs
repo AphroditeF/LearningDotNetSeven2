@@ -15,14 +15,14 @@ namespace LearningDotNetSeven2
     {
         static void Main(string[] args)
         {
-            DataContextDapper dapper=new DataContextDapper();
+            //DataContextDapper dapper=new DataContextDapper();
             DataContextEF entityFramework=new DataContextEF();
 
-            string sqlCommand="SELECT GETDATE()";
+            //string sqlCommand="SELECT GETDATE()";
 
-            DateTime rightNow = dapper.LoadDataSingle<DateTime>(sqlCommand);
+            //DateTime rightNow = dapper.LoadDataSingle<DateTime>(sqlCommand);
 
-            Console.WriteLine(rightNow);
+            //Console.WriteLine(rightNow);
             
             Computer myComputer=new Computer(){
                 Motherboard="Z690",
@@ -36,9 +36,9 @@ namespace LearningDotNetSeven2
             entityFramework.Add(myComputer);
             entityFramework.SaveChanges();
 
-            Console.WriteLine(myComputer.Motherboard);
+            //Console.WriteLine(myComputer.Motherboard);
 
-            string sql=@"INSERT INTO TutorialAppSchema.Computer (
+            /*string sql=@"INSERT INTO TutorialAppSchema.Computer (
                 Motherboard,
                 HasWiFi,
                 HasLTE,
@@ -52,26 +52,26 @@ namespace LearningDotNetSeven2
                 + "','" + myComputer.Price.ToString("0.00", CultureInfo.InvariantCulture)
                 + "','" + myComputer.VideoCard
                 + "')";
+*/
+            //Console.WriteLine(sql);
 
-            Console.WriteLine(sql);
-
-            bool result = dapper.ExecuteSql(sql);
-            Console.WriteLine("result:");
-            Console.WriteLine(result);
+          //  bool result = dapper.ExecuteSql(sql);
+          //  Console.WriteLine("result:");
+          //  Console.WriteLine(result);
 
             /*myComputer.*/
 
-            string sqlSelect=@"SELECT ComputerID, Motherboard,
+          /*  string sqlSelect=@"SELECT ComputerID, Motherboard,
                 HasWiFi,
                 HasLTE,
                 ReleaseDate,
                 Price,
                 VideoCard
-                FROM TutorialAppSchema.Computer";
+                FROM TutorialAppSchema.Computer"; */
 
-            IEnumerable<Computer>computers = dapper.LoadData<Computer>(sqlSelect);
+           // IEnumerable<Computer>computers = dapper.LoadData<Computer>(sqlSelect);
 
-            Console.WriteLine("'ComputerID','Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
+         /*   Console.WriteLine("'ComputerID','Motherboard','HasWiFi','HasLTE','ReleaseDate','Price','VideoCard'");
 
             foreach(Computer singleComputer in computers){
                 Console.WriteLine("'" 
@@ -85,7 +85,7 @@ namespace LearningDotNetSeven2
                 + "'");
                 
             
-            }
+            } */
 
             IEnumerable<Computer>?computersEF = entityFramework.Computer?.ToList<Computer>();
 
